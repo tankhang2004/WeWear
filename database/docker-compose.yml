@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql
+    container_name: wewear-db
+    environment:
+      MYSQL_ROOT_PASSWORD: MatKhau123!
+    ports:
+      - "3100:3306"  # Exposing port 3306 inside the container as port 3100 on the host
+    volumes:
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql  # For initializing the DB with your custom SQL
+    networks:
+      - wewear-network
+
+networks:
+  wewear-network:
+    driver: bridge
